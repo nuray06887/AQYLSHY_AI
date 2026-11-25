@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqylshy AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <img src="images/logo.png" alt="Logo"
+                 onerror="this.style.display='none'">
+            <div>
+                <h2>Aqylshy AI</h2>
+                <small>Ақылмен басқарылатын ақша</small>
+            </div>
+        </div>
+
+        <p class="menu-title">НЕГІЗГІ МӘЗІР</p>
+
+        <button class="nav active" data-page="home">⌂ Басты бет</button>
+        <button class="nav" data-page="plan">◷ Менің жоспарым</button>
+        <button class="nav" data-page="game">✦ Ақша жинау ойыны</button>
+        <button class="nav" data-page="test">✓ Қаржылық тест</button>
+        <button class="nav" data-page="chat">✧ AI көмекші</button>
+        <button class="nav" data-page="profile">◎ Профиль</button>
+
+        <div class="sidebar-bottom">
+            <b>Ақылды әдеттер 💚</b>
+            <p>Кішкентай қадамдар үлкен мақсаттарға жеткізеді.</p>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <span>Жеке кабинет / <b id="pageTitle">Басты бет</b></span>
+            <span class="avatar">A</span>
+        </header>
+
+        <!-- БАСТЫ БЕТ -->
+        <section class="page active" id="home">
+
+            <p class="subtitle">СӘЛЕМ, ҚОШ КЕЛДІҢ!</p>
+            <h1>Қаржыңды ақылмен басқар 💚</h1>
+            <p class="description">
+                Бүгінгі кішкентай қадамың — ертеңгі үлкен мүмкіндігің.
+            </p>
+
+            <div class="hero">
+                <div>
+                    <span>ЖЕКЕ ҚАРЖЫЛЫҚ КӨМЕКШІ</span>
+                    <h2>Ақшаңды бақыла,<br>мақсатыңа жақында!</h2>
+                    <p>Кіріс пен шығысты жоспарлап, жинағыңды көбейт.</p>
+                    <button onclick="openPage('plan')">Жоспарымды ашу →</button>
+                </div>
+                <div class="hero-icon">₸</div>
+            </div>
+
+            <h2 class="section-title">Қаржылық көрсеткіштер</h2>
+
+            <div class="stats">
+                <div class="stat">
+                    <span>Жалпы баланс</span>
+                    <h2 id="balance">0 ₸</h2>
+                </div>
+
+                <div class="stat">
+                    <span>Айлық кіріс</span>
+                    <h2 id="incomeStat">0 ₸</h2>
+                </div>
+
+                <div class="stat">
+                    <span>Айлық шығыс</span>
+                    <h2 id="expenseStat">0 ₸</h2>
+                </div>
+
+                <div class="stat">
+                    <span>Жинақ мақсаты</span>
+                    <h2 id="goalPercent">0%</h2>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3 id="homeGoal">Менің мақсатым</h3>
+                <p>Жиналған ақша: <b id="homeSaved">0 ₸</b></p>
+                <p>Мақсат сомасы: <b id="homeTarget">0 ₸</b></p>
+                <div class="progress">
+                    <div id="homeProgress"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>💡 Aqylshy кеңесі</h3>
+                <p>
+                    Кірісіңнің кемінде 10%-ын жинаққа бөліп қоюға тырыс.
+                    Аз сомадан бастау да — жақсы әдет!
+                </p>
+            </div>
+
+        </section>
+
+        <!-- ЖОСПАР -->
+        <section class="page" id="plan">
+
+            <p class="subtitle">PLAN / ЖОСПАР</p>
+            <h1>Менің қаржылық жоспарым</h1>
+            <p class="description">Кірісің мен шығысыңды бақыла.</p>
+
+            <div class="two-columns">
+
+                <div class="panel">
+                    <h3>🎯 Жинақ мақсаты</h3>
+
+                    <label>Мақсат атауы</label>
+                    <input id="goalName" type="text" placeholder="Мысалы: Ноутбук">
+
+                    <label>Қажетті сома (₸)</label>
+                    <input id="goalTarget" type="number" min="1" placeholder="300000">
+
+                    <label>Жиналған сома (₸)</label>
+                    <input id="goalSaved" type="number" min="0" placeholder="0">
+
+                    <button onclick="saveGoal()">Мақсатты сақтау</button>
+                </div>
+
+                <div class="panel">
+                    <h3>💰 Айлық бюджет</h3>
+
+                    <label>Айлық кіріс (₸)</label>
+                    <input id="income" type="number" min="0" placeholder="150000">
+
+                    <label>Айлық шығыс (₸)</label>
+                    <input id="expenses" type="number" min="0" placeholder="90000">
+
+                    <button onclick="saveBudget()">Бюджетті сақтау</button>
+
+                    <h3 id="budgetResult"></h3>
+                </div>
+
+            </div>
+
+            <div class="panel">
+                <h3>50 / 30 / 20 ережесі</h3>
+                <p>50% — қажеттіліктерге</p>
+                <p>30% — қалауыңа</p>
+                <p>20% — жинақ пен қарызды өтеуге</p>
+            </div>
+
+        </section>
+
+        <!-- ОЙЫН -->
+        <section class="page" id="game">
+
+            <p class="subtitle">GAME / ОЙЫН</p>
+            <h1>Ақша жинау ойыны 🌱</h1>
+            <p class="description">7 күндік жинақ челленджін орында!</p>
+
+            <div class="panel game-panel">
+                <div class="plant" id="plant">🌱</div>
+                <h2>Жинақ көшетін өсір!</h2>
+                <p>Күн сайын жинақ жасағаныңды белгіле.</p>
+
+                <h1><span id="streak">0</span> / 7 күн</h1>
+
+                <div class="progress">
+                    <div id="gameProgress"></div>
+                </div>
+
+                <button onclick="completeDay()">Бүгінгі қадамды белгіле +</button>
+
+                <p id="gameMessage"></p>
+            </div>
+
+        </section>
+
+        <!-- ТЕСТ -->
+        <section class="page" id="test">
+
+            <p class="subtitle">TEST / БІЛІМІҢДІ ТЕКСЕР</p>
+            <h1>Қаржылық сауаттылық тесті</h1>
+            <p class="description">5 сұраққа жауап беріп, біліміңді тексер.</p>
+
+            <div class="panel quiz-panel">
+                <p id="questionNumber">1 / 5</p>
+                <h2 id="question"></h2>
+
+                <div id="answers"></div>
+
+                <p id="answerInfo"></p>
+
+                <button id="nextBtn" onclick="nextQuestion()" disabled>
+                    Келесі сұрақ →
+                </button>
+
+                <h2 id="result"></h2>
+                <button id="restartBtn" onclick="restartQuiz()" hidden>
+                    Қайта тапсыру
+                </button>
+            </div>
+
+        </section>
+
+        <!-- AI КӨМЕКШІ -->
+        <section class="page" id="chat">
+
+            <p class="subtitle">CHAT / AI КӨМЕКШІ</p>
+            <h1>Aqylshy AI көмекшісі 🤖</h1>
+            <p class="description">Қаржы туралы сұрағыңды қой.</p>
+
+            <div class="panel">
+                <div class="chat-box" id="messages">
+                    <div class="bot-message">
+                        Сәлем! Мен Aqylshy AI көмекшісімін 💚
+                        Саған қаржыны басқаруға көмектесемін.
+                    </div>
+                </div>
+
+                <form id="chatForm">
+                    <input id="chatInput" type="text"
+                           placeholder="Сұрағыңды жаз..." required>
+                    <button type="submit">Жіберу</button>
+                </form>
+
+                <small>
+                    Ескерту: бұл әзірге демо көмекші.
+                    Нақты AI API қосылмаған.
+                </small>
+            </div>
+
+        </section>
+
+        <!-- ПРОФИЛЬ -->
+        <section class="page" id="profile">
+
+            <p class="subtitle">USER / ПРОФИЛЬ</p>
+            <h1>Менің профилім 👤</h1>
+
+            <div class="panel">
+                <label>Атың</label>
+                <input id="userName" type="text" placeholder="Атыңды енгіз">
+
+                <label>Жасың</label>
+                <input id="userAge" type="number" min="1" placeholder="Жасың">
+
+                <label>Мәртебең</label>
+                <select id="userStatus">
+                    <option>Оқушы</option>
+                    <option>Студент</option>
+                    <option>Жұмысшы</option>
+                    <option>Жұмыс беруші</option>
+                    <option>Зейнеткер</option>
+                </select>
+
+                <button onclick="saveProfile()">Профильді сақтау</button>
+
+                <h3 id="profileMessage"></h3>
+            </div>
+
+        </section>
+
+        <footer>Aqylshy AI © 2026 — Ақылмен басқарылатын ақша</footer>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
